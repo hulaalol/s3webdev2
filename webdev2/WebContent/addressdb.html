@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <script type="text/javascript">
+
+      var adr = new Array();
+      adr["HdM"] = "Nobelstraße 10";
+      adr["AfT"] = "Stuttgarter Zentrum";
+      adr["VfB"] = "Bad Cannstadt, Neckarpark, Mercedesstraße 87"
+      adr["Fernsehturm"] = "Jahnstraße 120";
+      
+      
+      function search(loc) {
+    	  document.getElementById("address").value = adr[loc]; 
+      }
+
+    </script>
+
+  </head>
+  <body>
+
+    <input type="text" size="30" id="location"/>
+    <br>
+    <input type="text" size="30" id="address">
+    <br>
+    <input type="button" value="search address" onclick="search(document.getElementById('location').value);"/>
+
+  </body>
+</html>

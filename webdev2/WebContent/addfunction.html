@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <script type="text/javascript">
+
+	function add(){
+		
+		var a = parseInt(document.getElementById("z1").value)
+		var b = parseInt(document.getElementById("z2").value)
+		
+		
+		document.getElementById("result").value =  a+b;
+	}
+	
+	var myAddFunction = add;
+
+    </script>
+
+  </head>
+  <body>
+
+    <input type="text" size="10" id="z1"/>
+    <br>
+    <input type="text" size="10" id="z2">
+    <br>
+    <input type="text" size="10" id="result">
+    <br>
+    <input type="button" value="add" onclick="myAddFunction()"/>
+
+  </body>
+</html>

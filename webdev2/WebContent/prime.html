@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <script type="text/javascript">
+
+	function handleClick(){
+		
+		document.getElementById("ergebnis").value=""
+		
+		var input = parseInt(document.getElementById("zahl").value)
+		
+		if (input == 2 || input == 3) {
+			document.getElementById("ergebnis").value="True"
+		}else if(input%2 == 0 || input%3 == 0 ){
+			document.getElementById("ergebnis").value="False"
+		}
+		
+		var i;
+		var w;
+		
+		i = 5;
+		w = 2;
+		
+		while (i*i <= input){
+			
+			if(input%i == 0){
+				document.getElementById("ergebnis").value="False"
+			}
+			i +=w;
+			w = 6-w;
+
+		}
+		
+		if(document.getElementById("ergebnis").value == "" ){
+			document.getElementById("ergebnis").value="True"
+		}
+		
+		
+
+	}
+    </script>
+
+  </head>
+  <body>
+		
+	<h1 style="color:#336699" id="ueberschrift"> Kleine JavaScript-Demo</h1>
+	<input type="text" size="5" id="zahl"/>
+	<input type="button" onClick="handleClick()" value="isPrim"/>
+	<input type="text" size="10" id="ergebnis"/>
+	
+	
+
+
+
+
+  </body>
+</html>
