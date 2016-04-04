@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee DB example</title>
+
+<script> 
+ var p1 = {"firstName":"John", "lastName":"Doe"};
+ var p2 =  {"firstName":"Anna", "lastName":"Smith"};
+ var p3 = {"firstName":"Peter", "lastName":"Jones"};
+
+ var employees = [p1,p2,p3];
+ 
+ 
+ function search(id) {
+	  document.getElementById("name").value = employees[id].firstName + " " + employees[id].lastName; 
+ }
+ 
+ 
+
+</script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+	<input type="text" size="30" id="id"/>
+    <br>
+    <input type="text" size="30" id="name">
+    <br>
+    <input type="button" value="search employee" onclick="search(document.getElementById('id').value);"/>
+
+
+
+
+
+
+
+
+</body>
+</html>

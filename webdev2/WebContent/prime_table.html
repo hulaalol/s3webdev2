@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Prime Table Generator</title>
+
+
+<link id="css" rel="stylesheet" href="PRIMETABLE.css">
+	
+    <script type="text/javascript">
+
+	function checkPrime(zahl){
+		
+		var input = parseInt(zahl);
+		
+		if (input == 2 || input == 3) {
+			return true;
+		}else if(input%2 == 0 || input%3 == 0 ){
+			return false;
+		}
+		
+		var i;
+		var w;
+		
+		i = 5;
+		w = 2;
+		
+		while (i*i <= input){
+			
+			if(input%i == 0){
+				return false;
+			}
+			i +=w;
+			w = 6-w;
+
+		}
+		
+		return true;
+		
+		
+
+	}
+	
+	
+	function dosth(){
+		
+		var end = parseInt(document.getElementById("maxnumber").value);
+		
+		var maxcolumns = parseInt(document.getElementById("columns").value);
+		
+		var list = new Array();
+		var listindex=0;
+		
+		for(var i=2; i<=end; i++){
+			
+			if(checkPrime(i)==true){
+				list[listindex]=i;
+				listindex++;
+			}
+		}
+		
+		
+		var table = document.getElementById("table");
+		
+		var row = document.createElement("TR");
+		
+		table.appendChild(row);
+		
+		
+		for(var k=0; k<list.length; k++){
+			
+			var length = table.getElementsByTagName('tr').length;;
+
+			
+			
+			
+			var currentRow = table.getElementsByTagName('tr')[length-1];
+			
+			for(var iteration=0; iteration<maxcolumns; iteration++){
+				
+				var node = document.createElement("TD"); 
+				var textnode = document.createTextNode(list[k+iteration]);
+				node.appendChild(textnode);
+				currentRow.appendChild(node);
+				
+			}
+			
+			//new row
+			var nextRow = document.createElement("TR");
+			table.appendChild(nextRow);
+			k= k+maxcolumns;
+		
+			
+		} 
+
+		
+		
+		
+		
+		
+		
+	}
+    </script>
+
+  </head>
+  <body>
+		
+	<h1 style="color:#336699" id="ueberschrift"> Prime Number Generator</h1>
+	Maximale Zahl <input type="text" size="5" id="maxnumber"/>
+	<br>
+	Spaltenanzahl <input type="text" size="5" id="columns"/>
+	<br>
+	<input type="button" onClick="dosth()" value="generate Table"/>
+	<br>
+	<table id="table">
+	</table>
+
+	
+	
+
+
+
+
+  </body>
+</html>
