@@ -44,6 +44,9 @@
 	
 	function dosth(){
 		
+		
+		
+		
 		var end = parseInt(document.getElementById("maxnumber").value);
 		
 		var maxcolumns = parseInt(document.getElementById("columns").value);
@@ -62,6 +65,11 @@
 		
 		var table = document.getElementById("table");
 		
+		while (table.firstChild) {
+		    table.removeChild(table.firstChild);
+		}
+		
+		
 		var row = document.createElement("TR");
 		
 		table.appendChild(row);
@@ -78,8 +86,16 @@
 			
 			for(var iteration=0; iteration<maxcolumns; iteration++){
 				
-				var node = document.createElement("TD"); 
-				var textnode = document.createTextNode(list[k+iteration]);
+				var node = document.createElement("TD");
+				
+				
+				
+				if(typeof list[k+iteration] === "undefined"){
+					var textnode = document.createTextNode(" ");
+				}else{
+					var textnode = document.createTextNode(list[k+iteration]);
+				}
+			
 				node.appendChild(textnode);
 				currentRow.appendChild(node);
 				
