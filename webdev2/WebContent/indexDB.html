@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <script type="text/javascript">
+
+    var db;
+    var request = indexedDB.open("personen",5);
+    
+    request.onerror = function(evt) {
+      console.log("Database error code: " + evt.target.errorCode);
+    };
+    
+    request.onsuccess = function(evt) {
+      db = request.result;
+    };
+    
+    
+    var peopleData = [
+                      { name: "Rekt", vorname: "Paul", email: "paule@company.com" , adress:"Schwarzwaldstraße 110", plz:"70569", tel:"0190666666"},
+                      { name: "Schescherino", vorname: "Marcel", email: "marcelovic@company.com" , adress:"Weißlichtungstraße 112", plz:"73339", tel:"2"}
+                  ];
+    
+    
+    request.onupgradeneeded = function (evt) { 
+
+    	alert("upgrade");
+    	
+
+        var objectStore = evt.currentTarget.result.createObjectStore("people",{ keyPath: "id", autoIncrement: true });
+ 
+        objectStore.createIndex("name", "name", { unique: false });
+        objectStore.createIndex("email", "email", { unique: true });
+        objectStore.createIndex("vorname", "vorname", { unique: false });
+        objectStore.createIndex("adress", "adress", { unique: false });
+        objectStore.createIndex("plz", "plz", { unique: false });
+        objectStore.createIndex("tel", "tel", { unique: false });
+ 
+        for (i in peopleData) {
+            objectStore.add(peopleData[i]);
+        }
+    }; 
+    	
+    
+    
+    function giefdata() {
+    	
+		var table = document.getElementById("table");
+		
+		while (table.firstChild) {
+		    table.removeChild(table.firstChild);
+		}
+    	
+    	
+    	
+    	
+    	var transaction = db.transaction("people", IDBTransaction.READ_WRITE);
+    	var objectStore = transaction.objectStore("people");
+    	 
+    	var request = objectStore.openCursor();
+    	request.onsuccess = function(evt) {  
+    	    var cursor = evt.target.result;  
+    	    if (cursor) {  
+    	       
+    	    	var row = document.createElement("TR");
+    	    	
+    	    	var index = document.createElement("TD");
+    	    	var index_textnode = document.createTextNode(cursor.key);
+    	    	index.appendChild(index_textnode);
+    	    	
+    	    	var vorname = document.createElement("TD");
+    	    	var vorname_textnode = document.createTextNode(cursor.value.vorname);
+    	    	vorname.appendChild(vorname_textnode);
+    	    	
+    	    	var name = document.createElement("TD");
+    	    	var name_textnode = document.createTextNode(cursor.value.name);
+    	    	name.appendChild(name_textnode);
+
+    	    	var email = document.createElement("TD");
+    	    	var email_textnode = document.createTextNode(cursor.value.email);
+    	       	email.appendChild(email_textnode);
+    	       	
+    	    	var adress = document.createElement("TD");
+    	    	var adress_textnode = document.createTextNode(cursor.value.adress);
+    	    	adress.appendChild(adress_textnode);
+    	    	
+    	    	var plz = document.createElement("TD");
+    	    	var plz_textnode = document.createTextNode(cursor.value.plz);
+    	    	plz.appendChild(plz_textnode);
+    	    	
+    	    	var tel = document.createElement("TD");
+    	    	var tel_textnode = document.createTextNode(cursor.value.tel);
+    	    	tel.appendChild(tel_textnode);
+
+    	    	row.appendChild(index);
+    	    	row.appendChild(vorname);
+    	    	row.appendChild(name);
+    	    	row.appendChild(email);
+    	    	row.appendChild(adress);
+    	    	row.appendChild(plz);
+    	    	row.appendChild(tel);
+
+    	    	table.appendChild(row);
+    	    	
+    	    	
+    	        cursor.continue();  
+    	    }  
+    	    else {  
+    	        console.log("No more entries!");  
+    	    }  
+    	};
+    	
+    	
+    	
+    }
+		
+
+	
+    </script>
+	
+	<link id="css" rel="stylesheet" href="PRIMETABLE.css">
+
+
+
+  </head>
+  <body>
+		
+
+	
+	
+	<input type="button" value="gief data" onclick="giefdata()"/>
+	
+	<table id="table">
+	</table>
+	
+
+
+
+
+  </body>
+</html>
