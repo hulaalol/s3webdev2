@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  
+    <meta charset="utf-8">
+    
+    <title></title>
+
+    <script type="text/javascript">
+	
+    var imageObj = new Image();
+    imageObj.src = "homskrim.jpg";
+    var imgData;
+    
+    
+    window.onload= function() {
+    	var canvas = document.getElementById("myCanvas");
+    	var context = canvas.getContext("2d");
+    	
+    	context.drawImage(imageObj,10,10);
+
+    	imgData=context.getImageData(0,0,288,360);
+
+    }
+    
+    function convert() {
+    	
+    	
+    	for(var i=0; i<imgData.data.length; i+=4){
+    		
+    		var grey = .3*imgData.data[i]+ .59*imgData.data[i+1] + .11*imgData.data[i+2];
+    		
+    		imgData.data[i+0] = grey;
+    			imgData.data[i+1] = grey;
+    				imgData.data[i+2] = grey;
+
+    	}
+    	
+    	var canvas_SW = document.getElementById("myCanvas_SW");
+    	var context_SW = canvas_SW.getContext("2d");
+    	
+    	context_SW.putImageData(imgData,10,10);
+    	
+    	
+    	
+    }
+    
+
+
+
+    </script>
+
+  </head>
+  <body>
+
+<canvas id="myCanvas"  width="288"  height="360" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+<input type="button" value="convert" onclick="convert()"/>
+
+<canvas id="myCanvas_SW"  width="288"  height="360" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+
+
+
+
+
+  </body>
+</html>

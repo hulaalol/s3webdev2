@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <script type="text/javascript">
+
+    var canvas;
+    var context;
+    
+    
+    function testclear(){
+    	
+    canvas = document.getElementById("myCanvas");
+    context = canvas.getContext("2d");
+
+    
+    context.fillStyle = "#FFFFFF";
+    context.fillRect(0,0,800,600);
+
+    }
+    
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+    
+
+    
+    
+    
+    function male_N_Eck() {
+   
+    var n = document.getElementById("ecken").value;
+    canvas = document.getElementById("myCanvas");
+    context = canvas.getContext("2d");
+    context.strokeStyle = "#FF00000";
+    context.lineWidth=2;
+    
+    var x = 550;
+    var y = 250;
+    
+    context.beginPath();
+    context.moveTo(x,y);
+    
+    for ( var i = 1; i < n+1 ; i++ ){
+    	
+    	x = 350 + 200 * (Math.cos(i*2*Math.PI/n));
+    	y = 250 + 200 * (Math.sin(i*2*Math.PI/n));
+    	
+    	context.lineTo(x,y);
+    }
+    
+    context.stroke();
+    context.beginPath();
+    context.lineWidth = 1;
+    
+    context.StrokeStyle = "#00FF00";
+    context.arc(x-200, y,200,0,2*Math.PI);
+    context.stroke();
+    
+    context.closePath();
+
+    }
+
+    
+    function test(){
+    	
+    	
+    	 var n = document.getElementById("ecken").value;
+    	 canvas = document.getElementById("myCanvas");
+    	 
+    	 
+ 	   
+    	 context = canvas.getContext("2d");
+    	 
+    	 
+    	 context.beginPath();
+    	 context.strokeStyle = "blue";
+    	 context.lineWidth=2;
+    	    
+    	    var x = 550;
+    	    var y = 250;
+    	    
+    
+    	    context.moveTo(x,y);
+    	    
+    	    for ( var i = 1; i < n+1 ; i++ ){
+    	    	
+    	    	x = 350 + 200 * (Math.cos(i*2*Math.PI/n));
+    	    	y = 250 + 200 * (Math.sin(i*2*Math.PI/n));
+    	    	
+    	    	context.lineTo(x,y);
+    	    }
+    	    
+    	   
+    	    
+    	    var gradient = context.createRadialGradient(350,250,0,350,250,200);
+    	    
+    	    gradient.addColorStop(0,getRandomColor());
+    	    gradient.addColorStop((Math.random()).toFixed(2), getRandomColor());
+    	    gradient.addColorStop((Math.random()).toFixed(2), getRandomColor());
+    	    gradient.addColorStop((Math.random()).toFixed(2),getRandomColor());
+    	    
+    	    
+    	    
+    	    
+    	      context.fillStyle = gradient;
+    	      context.fill();
+    	      context.strokeStyle = getRandomColor();
+    	      
+    	      
+    	      
+    	      context.shadowColor = getRandomColor();
+    	      context.shadowBlur = 20;
+    	      context.shadowOffsetX = 20;
+    	      context.shadowOffsetY = 20;  
+    	      
+
+    	      context.stroke();
+    	    
+    	    
+      	    context.strokeStyle = getRandomColor();
+      	    
+      	    
+    	    context.beginPath();
+    	    context.lineWidth = 1;
+
+
+    	    context.arc(x-200, y,200,0,2*Math.PI);
+    	    context.stroke();
+    	    
+    	    context.closePath();
+    }
+    
+    
+    
+    
+    function epilepsyMode(){
+    	
+    	window.setInterval(function(){
+    		  test();
+    		}, 300);
+    	
+    	window.setInterval(function(){
+  		  testclear();
+  		}, 299);
+
+    }
+    
+
+
+    </script>
+
+  </head>
+  <body>
+
+<canvas id="myCanvas"  width="800"  height="600" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+
+<input type="button" value="draw" onclick="male_N_Eck()"/>
+
+<input type="button" value="clear" onclick="testclear()"/>
+
+<input type="button" value="color" onclick="test()"/>
+
+<input type="button" value="trigger Epilepsy-Mode" onclick="epilepsyMode()"/>
+
+<input type="text" size="5" id="ecken"/>
+
+
+
+  </body>
+</html>
