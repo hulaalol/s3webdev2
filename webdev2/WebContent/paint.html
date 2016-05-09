@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+	<style>
+table {
+	border: 1px solid black;
+	border-collapse: collapse;
+	font-family: Trebuchet MS;
+	font-size: 16pt;
+}
+
+td {
+	border: 1px solid black;
+	padding: 10px;
+}
+</style>
+
+
+
+    <script type="text/javascript">
+
+    var color="black";
+    var brush=5;
+    
+    var mousebutton;
+    
+    var x;
+    var y;
+    
+    var canvas;
+    var context;
+    
+    
+    window.onload= function() {
+    	canvas = document.getElementById("myCanvas");
+    	context = canvas.getContext("2d");
+    	
+    	canvas.addEventListener("mousedown",doMouseDown,false);
+    	canvas.addEventListener("mouseup",doMouseUp,false);
+    	canvas.addEventListener("mousemove",doDraw,false);
+
+
+    }
+
+    function doMouseDown(event){
+    	
+    	changeBrush();
+    	
+    	mousebutton = 1;
+    
+    	x = event.pageX;
+    	y = event.pageY;
+    	
+        context.beginPath();
+        context.lineWidth = 5;
+        
+        context.fillStyle = color;
+        context.arc(x, y,brush,0,2*Math.PI);
+        context.fill();
+
+
+    }
+    
+    function doMouseUp(event){
+    	mousebutton = 0;
+    }
+    
+    function doDraw(event){
+    	if(mousebutton==1){
+    		x = event.pageX;
+        	y = event.pageY;
+        	
+            context.beginPath();
+            context.lineWidth = 5;
+            
+            context.fillStyle = color;
+            context.arc(x, y,brush,0,2*Math.PI);
+            context.fill();
+    	}
+    	
+    	
+    	
+    }
+    
+    function changeColor(newcolor){
+    	color = newcolor.value;
+    }
+    
+    function changeBrush(){
+    	
+    	var dropdown = document.getElementById("brushSelector");
+    	var size = dropdown.options[dropdown.selectedIndex].value;
+    	
+    	brush = size;
+    }
+
+
+
+    </script>
+
+  </head>
+  <body>
+
+<canvas id="myCanvas"  width="1000"  height="750" style="border:1px solid black;">
+Your browser does not support the canvas element.
+</canvas>
+
+
+<table>
+
+		<tr>
+
+			<td bgcolor="black"><input id="black" type="button"
+				value="black" onclick="changeColor(black)" /></td>
+
+			<td bgcolor="blue"><input id="blue" type="button" value="blue"
+				onclick="changeColor(blue)" /></td>
+
+			<td bgcolor="red"><input id="red" type="button" value="red"
+				onclick="changeColor(red)" /></td>
+
+			<td bgcolor="yellow"><input id="yellow" type="button"
+				value="yellow" onclick="changeColor(yellow)" /></td>
+
+
+		</tr>
+		
+		<tr>
+		<td>
+		
+		<select id="brushSelector" name="brushSelect">
+				<option value="1">1</option>
+				<option value="3">3</option>
+				<option value="5">5</option>
+				<option value="10">10</option>
+				<option value="15">15</option>
+				<option value="30">30</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+
+		</select>
+		</td>
+		
+		<tr>
+
+
+</tr>
+
+
+
+
+
+</table>
+
+
+
+
+
+  </body>
+</html>
