@@ -4,12 +4,26 @@
     <meta charset="utf-8">
     <title></title>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"/>
+  <script >
+  
+  alert("Hallo Welt");
+  
+  $(document).ready(
+		  function() {
+	  
+			  alert("Hallo");
+			  
+			  $('#google').click(function() {
+		    	  $('.div1').hide();
+		    	  }); 
+           }
+  );
+   
 
-    $('#google').click(function() {
-    	  $("#google").hide()});
     
     </script>
+
 	
 	<link id="css" rel="stylesheet" href="jQueryDivs.css">
 
@@ -20,7 +34,7 @@
 			<div class="div1"></div>
 			<div class="div2"></div>
 
-<a id="google" href="http://www.google.com" target="_blank">Google ist dein Freund!</a>
+<a id="google" href="" >Google ist dein Freund!</a>
 
 
   </body>
