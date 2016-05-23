@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+
+
+
+<script type="text/javascript">
+
+var req = new XMLHttpRequest();
+
+function sendAjax() {
+req.open("GET", "http://localhost:8080/JavaServer/HelloWWW", true);
+req.onreadystatechange= showAjaxResult;
+req.send(null);
+}
+
+function showAjaxResult() {
+if(req.readyState == 4) {
+if(req.status == 200) {
+document.open(req);
+}
+}        
+}
+
+</script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+<h1>
+servlet
+</h1>
+<input type="submit" value="send Ajax Request" onClick="javascript:sendAjax();"/>
+
+
+</body>
+</html>
