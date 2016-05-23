@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+
+<link id="css" rel="stylesheet" href="jQueryDivs.css">
+
+<script type="text/javascript">
+
+var req = new XMLHttpRequest();
+
+function sendAjax() {
+req.open("GET", "http://localhost:8080/JQueryTest/date", true);
+req.onreadystatechange= showAjaxResult;
+req.send(null);
+}
+
+function showAjaxResult() {
+	
+	
+switch(req.readyState){
+case 0:
+	document.getElementById("stateDiv").style.backgroundColor = "red";
+	alert("UNSENT");
+	break;
+case 1:
+	document.getElementById("stateDiv").style.backgroundColor = "yellow";
+	alert("OPENED");
+	break;
+case 2:
+	document.getElementById("stateDiv").style.backgroundColor = "orange";
+	alert("HEADERS_RECEIVED");
+	break;
+	
+case 3:
+	document.getElementById("stateDiv").style.backgroundColor = "blue";
+	alert("LOADING ...");
+	break;
+	
+case 4:
+	
+	if(req.status == 200) {
+		document.getElementById("dateDiv").innerHTML = req.responseText;
+		console.log(req.responseText);
+
+		}
+	document.getElementById("stateDiv").style.backgroundColor = "green";
+	alert("DONE!");
+	break;
+
+
+
+
+
+}	
+    
+}
+
+</script>
+
+
+
+
+
+
+
+
+</head>
+<body id="stateDiv">
+
+	<h1>Ajax Date Project</h1>
+
+
+
+	<div id="dateDiv">
+	
+	test
+	
+	</div>
+
+
+	<div id="stateDiv2" style="background-color:grey;">
+	
+	</div>
+
+
+	<input type="submit" value="send Ajax Request" onClick="javascript:sendAjax();" />
+
+
+
+
+</body>
+</html>
