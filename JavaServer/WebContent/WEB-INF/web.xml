@@ -1,34 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-
-  
   <servlet>
     <description></description>
     <display-name>ReadInitParams</display-name>
     <servlet-name>ReadInitParams</servlet-name>
     <servlet-class>ReadInitParams</servlet-class>
-    
-    
     <init-param>
       <param-name>devName</param-name>
       <param-value>Hans Günther</param-value>
     </init-param>
-    
-     <init-param>
+    <init-param>
       <param-name>todayDate</param-name>
       <param-value>23. Mai 2016</param-value>
     </init-param>
-    
-
   </servlet>
-  
-  
   <servlet-mapping>
     <servlet-name>ReadInitParams</servlet-name>
     <url-pattern>/ReadInitParams</url-pattern>
   </servlet-mapping>
-  
-  
-  
-  
+  <servlet>
+    <description></description>
+    <display-name>Sessin</display-name>
+    <servlet-name>Sessin</servlet-name>
+    <servlet-class>src.test.Sessin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Sessin</servlet-name>
+    <url-pattern>/Sessin</url-pattern>
+  </servlet-mapping>
 </web-app>
