@@ -78,7 +78,8 @@ public class Sessin extends HttpServlet {
 		break;	
 		
 		case "restore":
-			
+		
+		this.person = (sessionPerson) session.getAttribute("person");	
 		firstNameResponse = person.firstName;
 		nameResponse = person.name;
 		addressResponse = person.address;
@@ -88,10 +89,12 @@ public class Sessin extends HttpServlet {
 		case "reset":
 		
 		this.person = null;
-			
+		
 		firstNameResponse = "";
 		nameResponse = "";
 		addressResponse = "";
+		
+		session.setAttribute("person",new sessionPerson(firstNameResponse,nameResponse,addressResponse));
 		break;
 
 		}
